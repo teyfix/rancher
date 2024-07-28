@@ -2,7 +2,9 @@
 
 This script automates the setup of a k3s cluster with the Rancher UI, including Let's Encrypt SSL for secure access. This can help you quickly create new clusters for testing, development, or learning purposes.
 
-Although you can use this Cluster for deploying real applications, I don't really know the caveats at the moment.
+## Disclaimer
+
+Although you can use this cluster for deploying real applications, please be aware that I am currently unaware of all potential caveats.
 
 ## Features
 
