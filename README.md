@@ -2,7 +2,9 @@
 
 This script automates the setup of a k3s cluster with the Rancher UI, including Let's Encrypt SSL for secure access. This can help you quickly create new clusters for testing, development, or learning purposes.
 
-Although you can use this Cluster for deploying real applications, I don't really know the caveats at the moment.
+## Disclaimer
+
+Although you can use this cluster for deploying real applications, please be aware that I am currently unaware of all potential caveats.
 
 ## Features
 
@@ -26,7 +28,7 @@ Although you can use this Cluster for deploying real applications, I don't reall
 To install and run the script using curl, execute the following command in your terminal:
 
 ```sh
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/25d97e1268648a92888b757527e9614b74e1673e/install.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/4c41c9eeed61cf6340c3e226b5b7b3a3f9e7a68e/install.sh)"
 ```
 
 ### Install with wget
@@ -34,7 +36,7 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/25d9
 To install and run the script using wget, execute the following command in your terminal:
 
 ```sh
-sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/25d97e1268648a92888b757527e9614b74e1673e/install.sh)"
+sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/4c41c9eeed61cf6340c3e226b5b7b3a3f9e7a68e/install.sh)"
 ```
 
 ## Post-Installation
