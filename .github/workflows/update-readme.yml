@@ -1,0 +1,33 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/update-readme.yml
+      - "**/*.sh"
+      - README_TEMPLATE.md
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Prepare README.md
+        run: |
+          INSTALL_URL="https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/install.sh"
+          sed "s|{{install_url}}|$INSTALL_URL|g" README_TEMPLATE.md > README.md
+
+      - name: Commit and push README.md
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add README.md
+          git commit -m "Update README.md to reflect new release"
+          git push
