@@ -136,6 +136,7 @@ function main() {
 
   hint "Install required packages for this script to work."
   hint "Get your public IP address to inform about the DNS A record."
+  hint "Update shell profile to include k3s and Helm aliases."
   hint "Install k3s and Helm."
 
   confirm "Do you want to continue?" "y"
@@ -176,13 +177,8 @@ function main() {
   echo "  - Rancher Namespace: $RANCHER_NAMESPACE"
   echo "  - Rancher Hostname: $RANCHER_HOSTNAME"
   echo "  - Rancher Password: $RANCHER_PASSWORD"
-  read -p "Do you want to continue? [y/N]: " confirm
 
-  if [ "$confirm" != "y" ]; then
-    die "Aborted"
-  fi
-
-  exit
+  confirm "Do you want to continue?" "y"
 
   cat <<EOF >>"$PROFILE_FILE"
 export KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
