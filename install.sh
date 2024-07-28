@@ -246,6 +246,7 @@ EOF
   echo "Script successfully installed Rancher on k3s"
   echo "Rancher UI will be available at https://$RANCHER_HOSTNAME"
   echo "Rancher may take a few minutes to be available, please wait for the deployment to finish."
+  echo "You will use \"$RANCHER_PASSWORD\" to login to Rancher UI."
 }
 
 main
