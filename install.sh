@@ -166,17 +166,17 @@ function main() {
   prompt "Rancher hostname" "RANCHER_HOSTNAME"
   prompt "Rancher namespace" "RANCHER_NAMESPACE" "$DEFAULT_RANCHER_NAMESPACE"
   prompt "Rancher Helm repository" "RANCHER_REPO" "$DEFAULT_RANCHER_REPO"
-
   prompt "Rancher password" "RANCHER_PASSWORD" "$DEFAULT_RANCHER_PASSWORD"
 
   # Propmt to user for confirmation
   echo "Please confirm the following settings:"
-  echo "  - Email: $LETSENCRYPT_EMAIL"
-  echo "  - K3s Version: $K3S_VERSION"
-  echo "  - Rancher Helm Repository: $RANCHER_REPO"
-  echo "  - Rancher Namespace: $RANCHER_NAMESPACE"
-  echo "  - Rancher Hostname: $RANCHER_HOSTNAME"
-  echo "  - Rancher Password: $RANCHER_PASSWORD"
+
+  hint "- Email: $LETSENCRYPT_EMAIL"
+  hint "- K3s Version: $K3S_VERSION"
+  hint "- Rancher Helm Repository: $RANCHER_REPO"
+  hint "- Rancher Namespace: $RANCHER_NAMESPACE"
+  hint "- Rancher Hostname: $RANCHER_HOSTNAME"
+  hint "- Rancher Password: $RANCHER_PASSWORD"
 
   confirm "Do you want to continue?" "y"
 
