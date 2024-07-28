@@ -7,11 +7,11 @@ This script will setup a k3s cluster that will have Rancher UI.
 ### Install with cURL
 
 ```sh
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/6fbef10092b553d4c67c794a1330e14de1acc58e/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/9236631b5987c7a8059ffb4fe82694cfd89769e4/install.sh)"
 ```
 
 ### Install with wget
 
 ```sh
-bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/6fbef10092b553d4c67c794a1330e14de1acc58e/install.sh)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/9236631b5987c7a8059ffb4fe82694cfd89769e4/install.sh)"
 ```
