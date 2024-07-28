@@ -59,13 +59,9 @@ function get_public_ip() {
   local public_ip
   local public_ip_providers=(
     "https://ident.me"
-    "https://ifconfig.me"
-    "https://ifconfig.co"
-    "https://ifconfig.io"
     "https://icanhazip.com"
     "https://ipinfo.io/ip"
     "https://ipecho.net/plain"
-    "https://bot.whatismyipaddress.com"
   )
 
   for provider in "${public_ip_providers[@]}"; do
