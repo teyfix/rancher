@@ -7,11 +7,11 @@ This script will setup a k3s cluster that will have Rancher UI.
 ### Install with cURL
 
 ```sh
-curl -fsSL {{install_url}} | bash
+bash -c "$(curl -fsSL {{install_url}})"
 ```
 
 ### Install with wget
 
 ```sh
-wget -qO- {{install_url}} | bash
+bash -c "$(wget -qO- {{install_url}})"
 ```
