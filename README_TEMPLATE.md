@@ -49,3 +49,7 @@ sudo bash -c "$(wget -qO- {{install_url}})"
 ## Feedback and Contributions
 
 - I welcome any feedback and contributions to improve this script. Feel free to open an issue or submit a pull request on this GitHub repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
