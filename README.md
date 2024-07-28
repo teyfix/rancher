@@ -26,7 +26,7 @@ Although you can use this Cluster for deploying real applications, I don't reall
 To install and run the script using curl, execute the following command in your terminal:
 
 ```sh
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/bdccbe0fd67e7d9df136927cd62d446f30e0e1dc/install.sh)"
+sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/25d97e1268648a92888b757527e9614b74e1673e/install.sh)"
 ```
 
 ### Install with wget
@@ -34,7 +34,7 @@ sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/bdcc
 To install and run the script using wget, execute the following command in your terminal:
 
 ```sh
-sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/bdccbe0fd67e7d9df136927cd62d446f30e0e1dc/install.sh)"
+sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/25d97e1268648a92888b757527e9614b74e1673e/install.sh)"
 ```
 
 ## Post-Installation
@@ -49,3 +49,7 @@ sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/bdccb
 ## Feedback and Contributions
 
 - I welcome any feedback and contributions to improve this script. Feel free to open an issue or submit a pull request on this GitHub repository.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
