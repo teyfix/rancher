@@ -122,7 +122,7 @@ function main() {
 
   # Setup default values
   local DEFAULT_K3S_VERSION="v1.28.5+k3s1"
-  local DEFAULT_RANCHER_REPO="rancher-latest"
+  local DEFAULT_RANCHER_REPO="rancher-stable"
   local DEFAULT_RANCHER_NAMESPACE="cattle-system"
   local DEFAULT_RANCHER_PASSWORD="$(dd if=/dev/urandom bs=1 count=32 2>/dev/null | base64 | tr -d '/+' | cut -c1-32)"
 
