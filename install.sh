@@ -185,7 +185,15 @@ EOF
   source "$PROFILE_FILE"
 
   # Install k3s
-  curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -
+  if [ -n "$K3S_TOKEN" ]; then
+    if [ -n "$K3S_URL" ]; then
+      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --cluster-init
+    else
+      curl -sfL https://get.k3s.io | sh -s - server --server "$K3S_URL"
+    fi
+  else
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -
+  fi
 
   # Install Helm
   curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
