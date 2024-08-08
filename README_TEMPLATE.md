@@ -28,7 +28,7 @@ Although you can use this cluster for deploying real applications, please be awa
 To install and run the script using curl, execute the following command in your terminal:
 
 ```sh
-sudo bash -c "$(curl -fsSL {{install_url}})"
+sudo -E bash -c "$(curl -fsSL {{install_url}})"
 ```
 
 ### Install with wget
@@ -36,7 +36,7 @@ sudo bash -c "$(curl -fsSL {{install_url}})"
 To install and run the script using wget, execute the following command in your terminal:
 
 ```sh
-sudo bash -c "$(wget -qO- {{install_url}})"
+sudo -E bash -c "$(wget -qO- {{install_url}})"
 ```
 
 ## Post-Installation
