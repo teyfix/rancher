@@ -192,6 +192,9 @@ EOF
     else
       echo "Your environment exposed a K3S_TOKEN, using it to launch a high availability cluster."
       curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --server "$K3S_URL"
+      echo "Joined to the cluster with the provided token"
+
+      return
     fi
   else
     echo "Installing k3s with version $K3S_VERSION"
