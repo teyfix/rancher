@@ -195,7 +195,7 @@ EOF
   if [ -n "$K3S_TOKEN" ]; then
     if [ -n "$K3S_URL" ]; then
       echo "Your environment exposed a K3S_TOKEN and K3S_URL, using them to join the cluster."
-      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --server "$K3S_URL" --tls-san="$K3S_URL" $k3s_tls_san
+      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --server "$K3S_URL" $k3s_tls_san
 
       echo "Joined to the cluster with the provided token"
       return 0
