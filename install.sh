@@ -164,7 +164,7 @@ function main() {
   prompt "Rancher Helm repository" "RANCHER_REPO" "$DEFAULT_RANCHER_REPO"
   prompt "Rancher password" "RANCHER_PASSWORD" "$DEFAULT_RANCHER_PASSWORD"
 
-  local endpoints="$(echo "$K3S_URL $RANCHER_HOSTNAME"; hostname -I; hostname -A)"
+  local endpoints="$((echo "$K3S_URL $RANCHER_HOSTNAME"; hostname -I; hostname -A) | xargs -n1)"
 
   # Propmt to user for confirmation
   echo "Please confirm the following settings:"
