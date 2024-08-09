@@ -116,7 +116,7 @@ function confirm() {
   new_line
 }
 
-function main() 
+function main() {
   # Setup environment
   local PROFILE_FILE="$HOME/.$(basename "$SHELL")rc"
 
@@ -281,7 +281,7 @@ EOF
 
   echo "You can also use this script to join new nodes to local cluster:"
   echo "curl -sfL https://get.k3s.io | K3S_TOKEN="$k3s_server_token" sh -s - server --server https://$k3s_endpoint:6443"
-
+}
 
 # Check if user is root
 if [ "$(id -u)" != "0" ]; then
