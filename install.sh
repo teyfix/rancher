@@ -273,8 +273,14 @@ EOF
 
   new_line
 
+  local k3s_endpoint="$(echo "$endpoints" | xargs -n1 | grep -E '^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.' | head -n1)"
+
+  if [ -z "$k3s_endpoint" ]; then
+    k3s_endpoint="$public_ip"
+  fi
+
   echo "You can also use this script to join new nodes to local cluster:"
-  echo "curl -sfL https://get.k3s.io | K3S_TOKEN="$k3s_server_token" sh -s - server --server https://$public_ip:6443"
+  echo "curl -sfL https://get.k3s.io | K3S_TOKEN="$k3s_server_token" sh -s - server --server https://$k3s_endpoint:6443"
 
 
 # Check if user is root
