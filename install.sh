@@ -178,8 +178,8 @@ function main() {
 
   cat <<EOF >>"$PROFILE_FILE"
 export KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-alias helm="sudo helm --kubeconfig /etc/rancher/k3s/k3s.yaml"
-alias kubectl="sudo kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml"
+alias helm="sudo /usr/local/bin/helm --kubeconfig /etc/rancher/k3s/k3s.yaml"
+alias kubectl="sudo /usr/local/bin/kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml"
 EOF
 
   source "$PROFILE_FILE"
@@ -203,6 +203,7 @@ EOF
 
   # Install Helm
   curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+  source "$PROFILE_FILE"
 
   # Install required Helm repositories for Rancher and Cert-Manager
   helm repo add jetstack https://charts.jetstack.io
