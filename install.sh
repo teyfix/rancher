@@ -189,7 +189,7 @@ EOF
   new_line
 
   echo "K3S Server will be accessible by these endpoints:"
-  echo "$k3s_tls_san" | xargs -I {} hint "- {}"
+  echo "$k3s_tls_san" | xargs -I {} echo "  - {}"
 
   # Install k3s
   if [ -n "$K3S_TOKEN" ]; then
