@@ -45,12 +45,12 @@ function install_deps() {
     "curl"
   )
 
-  sudo apt-get update
+  apt-get update
 
   for dep in "${deps[@]}"; do
     if ! command -v "$dep" &>/dev/null; then
       echo "This script requires \"$dep\" to be installed, the dependency will be installed now."
-      sudo apt-get install -y "$dep"
+      apt-get install -y "$dep"
     fi
   done
 }
@@ -178,8 +178,6 @@ function main() {
 
   cat <<EOF >>"$PROFILE_FILE"
 export KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-alias helm="sudo /usr/local/bin/helm --kubeconfig /etc/rancher/k3s/k3s.yaml"
-alias kubectl="sudo /usr/local/bin/kubectl --kubeconfig /etc/rancher/k3s/k3s.yaml"
 EOF
 
   source "$PROFILE_FILE"
@@ -203,7 +201,6 @@ EOF
 
   # Install Helm
   curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
-  source "$PROFILE_FILE"
 
   # Install required Helm repositories for Rancher and Cert-Manager
   helm repo add jetstack https://charts.jetstack.io
@@ -259,5 +256,10 @@ EOF
   echo "Rancher may take a few minutes to be available, please wait for the deployment to finish."
   echo "You will use \"$RANCHER_PASSWORD\" to login to Rancher UI."
 }
+
+# Check if user is root
+if [ "$(id -u)" != "0" ]; then
+  die "Error: This script must be run as root."
+fi
 
 main
