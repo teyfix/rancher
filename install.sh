@@ -176,11 +176,13 @@ function main() {
 
   confirm "Do you want to continue?" "y"
 
+  local KUBECONFIG_FILE="/etc/rancher/k3s/k3s.yaml"
+
   cat <<EOF >>"$PROFILE_FILE"
-export KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
+export KUBECONFIG="$KUBECONFIG_FILE"
 EOF
 
-  source "$PROFILE_FILE"
+  export KUBECONFIG="$KUBECONFIG_FILE"
 
   # Install k3s
   if [ -n "$K3S_TOKEN" ]; then
