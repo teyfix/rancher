@@ -191,7 +191,7 @@ EOF
 
   export KUBECONFIG="$KUBECONFIG_FILE"
 
-  local k3s_tls_san="$(echo "$endpoints" | tr ' ' ',')"
+  local k3s_tls_san="$(echo $endpoints | tr ' ' ',')"
 
   # Install k3s
   if [ -n "$K3S_TOKEN" ]; then
