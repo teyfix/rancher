@@ -251,12 +251,19 @@ letsEncrypt:
   environment: production
 EOF
 
+  local k3s_server_token="$(cat /var/lib/rancher/k3s/server/token)"
+
   new_line
 
   echo "Script successfully installed Rancher on k3s"
   echo "Rancher UI will be available at https://$RANCHER_HOSTNAME"
   echo "Rancher may take a few minutes to be available, please wait for the deployment to finish."
   echo "You will use \"$RANCHER_PASSWORD\" to login to Rancher UI."
+
+  new_line
+
+  echo "You can also use this script to join new nodes to local cluster:"
+  echo "curl -sfL https://get.k3s.io | K3S_TOKEN="$k3s_server_token" sh -s - server --server https://$public_ip:6443"
 }
 
 # Check if user is root
