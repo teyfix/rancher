@@ -204,9 +204,11 @@ EOF
   # Install Helm
   curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
+  local RANCHER_REPO_BRANCH="$(echo "$RANCHER_REPO" | awk -F- '{print $2}')"
+
   # Install required Helm repositories for Rancher and Cert-Manager
   helm repo add jetstack https://charts.jetstack.io
-  helm repo add "$RANCHER_REPO" https://releases.rancher.com/server-charts/latest
+  helm repo add "$RANCHER_REPO" "https://releases.rancher.com/server-charts/$RANCHER_REPO_BRANCH"
   helm repo update
 
   # Install Cert-Manager CRDs (Required for cert-manager to work)
