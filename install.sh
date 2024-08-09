@@ -184,21 +184,28 @@ EOF
 
   export KUBECONFIG="$KUBECONFIG_FILE"
 
+  local k3s_tls_san="$((echo "$K3S_URL $RANCHER_HOSTNAME"; hostname -I; hostname -A) | xargs -n1 | xargs -I {} echo --tls-san='"{}"')"
+
+  new_line
+
+  echo "K3S Server will be accessible by these endpoints:"
+  echo "$k3s_tls_san" | xargs -I {} hint "- {}"
+
   # Install k3s
   if [ -n "$K3S_TOKEN" ]; then
     if [ -n "$K3S_URL" ]; then
       echo "Your environment exposed a K3S_TOKEN and K3S_URL, using them to join the cluster."
-      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --cluster-init
+      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --server "$K3S_URL" --tls-san="$K3S_URL" $k3s_tls_san
 
       echo "Joined to the cluster with the provided token"
       return 0
     else
       echo "Your environment exposed a K3S_TOKEN, using it to launch a high availability cluster."
-      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --server "$K3S_URL"
+      curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --cluster-init $k3s_tls_san
     fi
   else
     echo "Installing k3s with version $K3S_VERSION"
-    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -
+    curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="$K3S_VERSION" sh -s - server --cluster-init $k3s_tls_san
   fi
 
   # Install Helm
