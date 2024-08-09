@@ -116,7 +116,7 @@ function confirm() {
   new_line
 }
 
-function main() {
+function main() 
   # Setup environment
   local PROFILE_FILE="$HOME/.$(basename "$SHELL")rc"
 
@@ -164,6 +164,8 @@ function main() {
   prompt "Rancher Helm repository" "RANCHER_REPO" "$DEFAULT_RANCHER_REPO"
   prompt "Rancher password" "RANCHER_PASSWORD" "$DEFAULT_RANCHER_PASSWORD"
 
+  local endpoints="$(echo "$K3S_URL $RANCHER_HOSTNAME"; hostname -I; hostname -A)"
+
   # Propmt to user for confirmation
   echo "Please confirm the following settings:"
 
@@ -173,6 +175,11 @@ function main() {
   hint "- Rancher Namespace: $RANCHER_NAMESPACE"
   hint "- Rancher Hostname: $RANCHER_HOSTNAME"
   hint "- Rancher Password: $RANCHER_PASSWORD"
+
+  new_line
+
+  echo "K3S Server will be accessible by these endpoints:"
+  echo "$endpoints" | xargs -I {} echo "  - {}"
 
   confirm "Do you want to continue?" "y"
 
@@ -184,12 +191,7 @@ EOF
 
   export KUBECONFIG="$KUBECONFIG_FILE"
 
-  local k3s_tls_san="$((echo "$K3S_URL $RANCHER_HOSTNAME"; hostname -I; hostname -A) | xargs -n1 | xargs -I {} echo --tls-san='"{}"')"
-
-  new_line
-
-  echo "K3S Server will be accessible by these endpoints:"
-  echo "$k3s_tls_san" | xargs -I {} echo "  - {}"
+  local k3s_tls_san="$(echo "$endpoints" | xargs -n1 | xargs -I {} echo --tls-san='"{}"')"
 
   # Install k3s
   if [ -n "$K3S_TOKEN" ]; then
@@ -273,7 +275,7 @@ EOF
 
   echo "You can also use this script to join new nodes to local cluster:"
   echo "curl -sfL https://get.k3s.io | K3S_TOKEN="$k3s_server_token" sh -s - server --server https://$public_ip:6443"
-}
+
 
 # Check if user is root
 if [ "$(id -u)" != "0" ]; then
