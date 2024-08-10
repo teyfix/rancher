@@ -24,6 +24,7 @@ function prompt() {
   if [ "$should_seed" = "true" ]; then
     eval export $varname="$default"
     hint "\"$varname\" will be set to \"$default\""
+    return
   fi
 
   new_line
