@@ -181,13 +181,13 @@ function main() {
 
   eval $(echo "export KUBECONFIG='/etc/rancher/k3s/k3s.yaml'" | tee -a "$PROFILE_FILE")
 
-  if [ -z "$LETSENCRYPT_EMAIL" ]; then
-    hint "Rancher UI will use cert-manager to generate SSL certificates with Let's Encrypt."
-    hint "Let's Encrypt requires an e-mail to be used as a contact in case of issues."
-    hint "Please provide an e-mail address to be used by Let's Encrypt."
-  fi
-
   if [ "$ci" = 'false' ]; then
+    if [ -z "$LETSENCRYPT_EMAIL" ]; then
+      hint "Rancher UI will use cert-manager to generate SSL certificates with Let's Encrypt."
+      hint "Let's Encrypt requires an e-mail to be used as a contact in case of issues."
+      hint "Please provide an e-mail address to be used by Let's Encrypt."
+    fi
+
     prompt "E-mail" "LETSENCRYPT_EMAIL"
   fi
 
