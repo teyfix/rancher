@@ -75,8 +75,6 @@ function get_public_ip() {
     "https://ipecho.net/plain"
   )
 
-  echo "Getting public IP address..."
-
   for provider in "${public_ip_providers[@]}"; do
     public_ip=$(curl -s "$provider" 2>/dev/null || true)
 
@@ -196,6 +194,8 @@ function main() {
 
   # Prompt k3s version
   prompt "K3S version" "K3S_VERSION" "$DEFAULT_K3S_VERSION" "$ci"
+
+  echo "Getting public IP address..."
 
   local public_ip="$(get_public_ip)"
 
