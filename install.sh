@@ -51,19 +51,16 @@ function prompt() {
   eval export $varname="${input:-$default}"
 }
 
-function install_deps() {
-  local deps=(
-    "curl"
-  )
+function check_deps() {
+  local updated="false"
+  local deps="curl"
+  local missing="$(echo "$deps" | xargs -I {} sh -c 'type {}' | grep 'not found' | awk -F: '{print $1}' | xargs)"
 
-  apt-get update
+  if [ -z "$missing" ]; then
+    return
+  fi
 
-  for dep in "${deps[@]}"; do
-    if ! command -v "$dep" &>/dev/null; then
-      echo "This script requires \"$dep\" to be installed, the dependency will be installed now."
-      apt-get install -y "$dep"
-    fi
-  done
+  die "Missing dependencies: $missing"
 }
 
 function get_public_ip() {
@@ -178,7 +175,7 @@ function main() {
     new_line
   fi
 
-  install_deps
+  check_deps
 
   eval $(echo "export KUBECONFIG='/etc/rancher/k3s/k3s.yaml'" | tee -a "$PROFILE_FILE")
 
