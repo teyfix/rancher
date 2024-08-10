@@ -28,7 +28,7 @@ Although you can use this cluster for deploying real applications, please be awa
 To install and run the script using curl, execute the following command in your terminal:
 
 ```sh
-sudo -E bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/13bed0a60981f980b2c8d503a61d4695daf9d82f/install.sh)"
+sudo -E bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/53ae0069cf223809ec783816c9c2a1bfe0e48df6/install.sh)"
 ```
 
 ### Install with wget
@@ -36,7 +36,7 @@ sudo -E bash -c "$(curl -fsSL https://raw.githubusercontent.com/teyfix/rancher/1
 To install and run the script using wget, execute the following command in your terminal:
 
 ```sh
-sudo -E bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/13bed0a60981f980b2c8d503a61d4695daf9d82f/install.sh)"
+sudo -E bash -c "$(wget -qO- https://raw.githubusercontent.com/teyfix/rancher/53ae0069cf223809ec783816c9c2a1bfe0e48df6/install.sh)"
 ```
 
 ## Post-Installation
