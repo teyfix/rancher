@@ -295,7 +295,7 @@ EOF
 
   new_line
 
-  local k3s_endpoint="$(echo "$endpoints" | xargs -n1 | grep -E '^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.' | head -n1)"
+  local k3s_endpoint="$(echo "$endpoints" | xargs -d, -n1 | grep -E '^10\.|^172\.(1[6-9]|2[0-9]|3[0-1])\.|^192\.168\.' | head -n1)"
 
   if [ -z "$k3s_endpoint" ]; then
     k3s_endpoint="$public_ip"
