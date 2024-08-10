@@ -205,7 +205,7 @@ function main() {
   prompt "Rancher Helm repository" "RANCHER_REPO" "$DEFAULT_RANCHER_REPO" "$ci"
   prompt "Rancher password" "RANCHER_PASSWORD" "$DEFAULT_RANCHER_PASSWORD" "$ci"
 
-  local endpoints="$(echo "$public_ip $RANCHER_HOSTNAME $(hostname -I) $(hostname -A)" | xargs | tr ' ' ',')"
+  local endpoints="$(echo "$public_ip $(hostname -I)" | xargs | tr ' ' ',')"
   local install_k3s_cmd="curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION='$K3S_VERSION' sh -s - server --tls-san='$endpoints'"
 
   if [ "$join" = 'true' ]; then
