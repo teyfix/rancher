@@ -52,7 +52,6 @@ function prompt() {
 }
 
 function check_deps() {
-  local updated="false"
   local deps="curl"
   local missing="$(echo "$deps" | xargs -I {} sh -c 'type {}' | grep 'not found' | awk -F: '{print $1}' | xargs)"
 
