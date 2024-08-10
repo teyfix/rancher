@@ -170,10 +170,14 @@ function main() {
     hint "Install k3s and Helm."
 
     confirm "Do you want to continue?" "y"
-    new_line
   fi
 
   check_deps
+
+  new_line
+  echo "Getting public IP address..."
+
+  local public_ip="$(get_public_ip)"
 
   eval $(echo "export KUBECONFIG='/etc/rancher/k3s/k3s.yaml'" | tee -a "$PROFILE_FILE")
 
@@ -189,10 +193,6 @@ function main() {
 
   # Prompt k3s version
   prompt "K3S version" "K3S_VERSION" "$DEFAULT_K3S_VERSION" "$ci"
-
-  echo "Getting public IP address..."
-
-  local public_ip="$(get_public_ip)"
 
   if [ -z "$RANCHER_HOSTNAME" ]; then
     hint "Please provide an FQDN that will be used to access the Rancher UI."
@@ -212,6 +212,9 @@ function main() {
     eval "$install_k3s_cmd"
     return 0
   fi
+
+  new_line
+  echo "Setup summary:"
 
   hint "- Email: $LETSENCRYPT_EMAIL"
   hint "- K3s Version: $K3S_VERSION"
